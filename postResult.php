@@ -1,4 +1,5 @@
 <?php
+session_start();
 header("Content-Type: text/html; charset=UTF-8");
 
 $name = $_POST['name'];
@@ -16,8 +17,8 @@ $password = $_POST['pw'];
 
 <?php
 if(($name=="admin" && $password=="1234") || ($name=="user" && $password=="money")) {
-  setCookie('isLogin', '1');
-  setCookie('name', $name);
+  $_SESSION['isLogin']=1;
+  $_SESSION['name']=$name;  
 ?>
 
 <h1>로그인 완료!</h1>
@@ -27,6 +28,8 @@ if(($name=="admin" && $password=="1234") || ($name=="user" && $password=="money"
 
 <?php
 } else {
+  $_SESSION['isLogin']=0;
+  $_SESSION['name']='';
 ?>
 
 <h1>당신은 누구?</h1>
